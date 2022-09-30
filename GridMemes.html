@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRIDmeme</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+          <div class="cat">Column</div>
+          <div class="type">Column</div>
+          <div class="w-100"></div>
+          <div class="set">Column</div>
+          <div class="del">Column</div>
+        </div>
+      </div>
+    <script>  
+        request = new XMLHttpRequest()
+        request.open("GET","https://v2.jokeapi.dev/joke/Any?safe-mode")
+        request.send()
+        request.onload = function() {
+            if (request.status == 200){
+
+                data = JSON.parse(request.responseText)
+
+                console.log(data)
+
+                document.querySelector(".cat").innerHTML = "Category: " + data.category
+                document.querySelector(".type").innerHTML = "Type: " + data.type
+                document.querySelector(".set").innerHTML = "Setup: " + data.setup
+                document.querySelector(".del").innerHTML = "Delivery: " + data.delivery
+
+            }else if (request.status == 404){
+                
+                console.log("No Records Found")
+            }
+        }
+
+    </script>
+</body>
+</html>
